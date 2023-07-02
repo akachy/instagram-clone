@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static%}
+
+      
+<div class="col pt-5">
+  <div class="d-sm-flex">
+    <div class="raas">
+      <div class="ms-4">
+        {% for profile in profile %}
+        {% if profile.profile_image %}
+        <a href="{% url 'profile' profile.user.id %}" class="text-decoration-none">
+        <img class="rounded-circle" height=60 width=60 src="{{profile.profile_image.url}}" alt="">
+        </a>
+        {% else %}
+        <a href="{% url 'profile' profile.user.id %}" class="text-decoration-none">
+        <img class="rounded-circle" height=60 width=60 src="{% static 'icons/default_profile_pic.png' %}" alt="">
+        </a>
+        {% endif %}
+        &nbsp;
+        {% endfor %}
+        <br><br><br><br>
+        
+        </span>
+        
+        
+      </div>
+      {% for posts in posts %}        
+      <div class="hello ms-7">
+        {% if posts.user.profile.profile_image %}
+        <img class="rounded-circle" height="30" width="30" src="{{posts.user.profile.profile_image.url}}" alt="">
+        {% else %}
+        <img class="rounded-circle" height="30" width="30" src="{% static 'icons/default_profile_pic.png' %}" alt="">
+        {% endif %}
+        <b>{{posts.user.username}}</b>&nbsp;<span class="text-muted">{{posts.created_at}}</span><br><br>
+        <img class="fit rounded-1" height="500" width="450"  src="{{posts.content.url}}" alt=""><br><br>
+        <img height="28" src="{% static 'icons/notification.png'%}" alt="">&nbsp;
+        <img height="25" src="{% static 'icons/comment.png'%}" alt="">&nbsp;
+        <img height="25" src="{% static 'icons/icons8-paper-plane-64.png'%}" alt=""><br>
+        <p>Liked by<b> kachy</b> and <b>1140 others</b></p>
+        {% if posts.caption %}
+        <b>{{posts.user.username}}</b>&nbsp; {{posts.caption}}
+        {% endif %}
+        {% if posts.comments.all %}
+        <p class="text-muted">View all {{posts.comments.count}} comments</p>
+        {% for comments in posts.comments.all %}
+        <b>{{comments.user.username }}</b> {{comments.text}} <br>
+        {% endfor %}
+        {% endif %}
+        
+        
+        
+        
+         
+        <form action="">
+            <input style="border: none;" cols="40" rows="5" type="text" placeholder="Add a comment">
+        </form>
+      <hr class="wit"width="100%">
+      </div>
+      {% endfor %}
+      
+    </div>
+      <div class="knock ms-8">
+        {% if user.profile.profile_image%}
+        <img class="rounded-circle" height=60 width=60 src="{{user.profile.profile_image.url}}" alt="">
+        {% else %}
+        <img class="rounded-circle" height=60 width=60 src="{% static 'icons/default_profile_pic.png' %}" alt="">
+        {% endif %}
+        <span class="ms-3"><b>{{user.username}}</b></span>
+        <span class="text-primary ms-6"><b>Switch</b></span><br><br>
+        <span class="text-muted"><b>Suggested for you</b><span class="ms-7">See all</span></span><br>
+        {% for profile in profile %}
+        {% if profile.profile_image %}
+        <img class="rounded-circle mt-3" height=35 width=35 src="{{profile.profile_image.url}}" alt="">
+        {% else %}
+        <img class="rounded-circle mt-3" height=35 width=35 src="{% static 'icons/default_profile_pic.png'%}" alt="">
+        {% endif %}
+        <span class="ms-2"><b>{{profile.user.username}}</b></span>
+        <a class="text-decoration-none ms-7 fw-5" href="">Follow</a><br>
+        {% endfor %}
+        
+        
+      </div>
+  </div>
+</div>
+
+{% endblock %}

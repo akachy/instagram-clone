@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static%}
+
+<section class="cent">
+    <div class="pt-5 fw-5">
+      <h1>kaTzEgRaM</h1>
+      <p class="fw-5">Create Post</p>
+          <form method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              {{ post_form.as_p }}
+              <br>
+              <button type="submit" class="btn btn-primary">Post</button>
+          </form>
+      
+      </div>
+  </section>
+
+{% endblock %}
