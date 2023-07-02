@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'css/ig.css' %}">
+  
+  <title>kaTzEgRaM</title>
+</head>
+<body>
+  <div class="col-md-6 offset-md-3">
+    <h1>Login</h1>
+    
+    <form method="POST" action="{% url 'login' %}">
+      {% csrf_token %}
+      <div class="mb-3">
+        <input type="text" class="form-control" name="username" placeholder="Enter your name">
+      </div>
+      <div class="mb-3">
+        <input type="password" class="form-control" name="password" placeholder="enter your password">
+      </div>
+      <br>
+      <button type="submit" class="btn btn-secondary">Submit</button>
+    <button class="btn btn-primary"><a class="text-white text-decoration-none" href="{% url 'register' %}">Sign Up</a></button>
+
+    </form>
+    <!-- <a href="{% url 'register' %}">sign up</a> -->
+
+  </div>
+
+  <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+</body>
+</html>
