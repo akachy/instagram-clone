@@ -10,48 +10,48 @@
   <link rel="stylesheet" href="{% static 'css/ig.css' %}">
   <title>kaTzEgRaM</title>
 </head>
-<body id="">
+<body class="">
   <div class="container-fluid overflow-hidden">
     <div class="row vh-100 overflow-auto">
-      <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 bg-white d-flex sticky-top">
-        <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 text-white">
-          <a href="#" class="d-flex align-items-center pb-sm-3 mb-md-0 me-md-auto text-black text-decoration-none mt-4">
+      <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 bg-white d-flex sticky-top" style="border-right: 1px rgb(235, 216, 238) solid;">
+        <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3">
+          <a href="#" class="d-flex align-items-center pb-sm-3 mb-md-0 me-md-auto loader text-decoration-none mt-4">
             <span class="fs-5 more" style="font-family: 'Times New Roman', Times, serif;"><b>K<span class="d-sm-inline">AtZeGrAm</span></span></b> 
             <span class="opt">{{user.username}}<span class=""></span>
           </span> 
           </a>
           <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
             <li class="nav-item">
-              <a href="{% url 'home'%}" class="nav-link px-sm-0 px-2 mt-4 more">
-                <img height="25" src="{% static 'icons/Instagram-Home-Icon-n3fd2.png'%}" alt=""><span class=" more ms-3 d-none d-sm-inline text-black">Home</span>
+              <a href="{% url 'home'%}" class="nav-link px-sm-0 px-2 mt-4 more loader">
+                <img height="25" src="{% static 'icons/Instagram-Home-Icon-n3fd2.png'%}" alt=""><span class=" more ms-3 d-none d-sm-inline loader">Home</span>
               </a>
             </li>
               <li>
-                <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-sm-0 px-2 mt-3 more">
-                  <img height="25" src="{% static 'icons/serach.png'%}" alt=""><span class=" more ms-3 d-none d-sm-inline text-black">Search</span></a>
+                <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-sm-0 px-2 mt-3 more loader">
+                  <img height="25" src="{% static 'icons/serach.png'%}" alt=""><span class=" more ms-3 d-none d-sm-inline">Search</span></a>
               </li>
               <li>
-                <a href="explore.html" class="nav-link px-sm-0 px-2 mt-4 more">
-                  <img height="25" src="{% static 'icons/explore.png'%}" alt=""><span class=" more ms-3 d-none d-sm-inline text-black">Explore</span></a>
+                <a href="explore.html" class="nav-link px-sm-0 px-2 mt-4 more loader">
+                  <img height="25" src="{% static 'icons/explore.png'%}" alt=""><span class=" more ms-3 d-none d-sm-inline">Explore</span></a>
               </li>
               <li>
-                <a href="#" class="nav-link px-sm-0 px-2 mt-4 more">
-                  <img height="25" src="{% static 'icons/reels.png'%}" alt=""><span class="ms-3 d-none d-sm-inline text-black">Reels</span></a>
+                <a href="#" class="nav-link px-sm-0 px-2 mt-4 more loader">
+                  <img height="25" src="{% static 'icons/reels.png'%}" alt=""><span class="ms-3 d-none d-sm-inline">Reels</span></a>
               </li>
               <li>
-                <a href="#" class="nav-link px-sm-0 px-2 mt-4 more"><img src="" alt=""><img height="25" src="{% static 'icons/notification.png'%}" alt=""><span class="ms-3 d-none d-sm-inline text-black">Notifications</span></a>
+                <a href="#" class="nav-link px-sm-0 px-2 mt-4 more"><img src="" alt=""><img height="25" src="{% static 'icons/notification.png'%}" alt=""><span class="ms-3 d-none d-sm-inline loader">Notifications</span></a>
               </li>
               <li id="create">
                 <a href="{% url 'create' %}" class="nav-link px-sm-0 px-2 mt-4 more">
-                  <img height="25" src="{% static 'icons/create2.png'%}" alt=""><span class="ms-3 d-none d-sm-inline text-black">Create</span> </a>
+                  <img height="25" src="{% static 'icons/create2.png'%}" alt=""><span class="ms-3 d-none d-sm-inline loader">Create</span> </a>
               </li>
               <li>
                 {% if user.profile.profile_image%}
                 <a href="{% url 'profile' request.user.id %}" class="nav-link px-sm-0 px-2 mt-4 more">
-                  <img height="25" width="25" class="rounded-circle" src="{{user.profile.profile_image.url}}" alt=""><span class="ms-3 d-none d-sm-inline text-black">Profile</span> </a>
+                  <img height="25" width="25" class="rounded-circle" src="{{user.profile.profile_image.url}}" alt=""><span class="ms-3 d-none d-sm-inline loader">Profile</span> </a>
                   {% else %}
                   <a href="{% url 'profile' request.user.id %}" class="nav-link px-sm-0 px-2 mt-4 more">
-                    <img height="25" width="25" class="rounded-circle" src="{% static 'icons/default_profile_pic.png' %}" alt=""><span class="ms-3 d-none d-sm-inline text-black">Profile</span> </a>
+                    <img height="25" width="25" class="rounded-circle" src="{% static 'icons/default_profile_pic.png' %}" alt=""><span class="ms-3 d-none d-sm-inline loader">Profile</span> </a>
                   {% endif %}
               </li>
           </ul>
@@ -61,7 +61,7 @@
                 <span class="d-none d-sm-inline mx-1 text-black more">More</span>
               </a>
               <ul class="dropdown-menu dropdown-menu-dark text-small shadow-lg" aria-labelledby="dropdownUser1">
-                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="{% url 'settings' %}">Settings</a></li>
                 <li><a class="dropdown-item" href="#">Apperance</a></li>
                 <li><a class="dropdown-item" href="#">random</a></li>
                 <li>
@@ -75,7 +75,7 @@
       </div>
         
       <div class="col d-flex flex-column h-100">
-          <main class="row">
+          <main class="">
               {% block content%}
 
               {% endblock %}
@@ -112,5 +112,8 @@
   </footer>
   <script src="{% static 'js/bootstrap.bundle.js'%}"></script>
   <script src="{% static 'js/ig.js' %}"></script>
+  <script src="{% static 'js/jquery-3.6.1.js' %}"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> -->
+  <!-- <script src="{% static 'js/jquery-3.6.1.js' %}"></script> -->
 </body>
 </html>
