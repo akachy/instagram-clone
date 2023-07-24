@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static%}
+
+<h3 class="pt-3 ps-3">Settings</h3>
+
+        <section style="width: 933px; border: 1px rgb(230, 161, 230) solid; display: flex;" class="ms-6 mt-4">
+          <div style="border-right: 1px rgb(219, 172, 211) solid;">
+            <div style="width: 236px;" class="p-4">
+              <h5>Ickau</h5>
+              <h6>Accounts Center</h6>
+              <p class="fs-7">Manage and personalize your accounts here and experiences across ickau inc.</p>
+              <div>
+                <span><img height="20px" src="{% static 'icons/icons8-personal-trainer-48.png' %}" alt=""></span><span class="fs-7 ms-2">Personal details</span><br>
+                <span><img height="20px" src="{% static 'icons/icons8-payments-64.png'%}" alt=""></span><span class="fs-7 ms-2">Payments</span><br>
+                <span><img height="20px" src="{% static 'icons/icons8-password-64.png'%}" alt=""></span><span class="fs-7 ms-2">Passwords and Security</span><br>
+              </div>
+            </div>
+            <div style="border-top: 1px rgb(213, 132, 216) solid;" class="p-4">
+              <ul class="list-unstyled">
+                <li class=" ms-2 pb-3">Edit Profile</li>
+                <li class=" ms-2 pb-3">Apps and websites</li>
+                <li class=" ms-2 pb-3">What you see</li>
+                <li class=" ms-2 pb-3">Notifications</li>
+                <li class=" ms-2 pb-3">Customization</li>
+                <li class=" ms-2 pb-3">Supervision</li>
+                <li class=" ms-2 pb-3">Help</li>
+                <li class=" ms-2 pb-3">About</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="p-5" style="width: 697px;">
+            <span class="fs-3">Edit Profile</span>
+            <div class="p-5">
+              <div class="ms-2 mb-2 mt-2 d-sm-flex">
+                {% if user.profile.profile_image%}
+                <img class="rounded-circle comt" height="40" width="40" src="{{user.profile.profile_image.url}}" alt="">
+                {% else %}
+                <img class="rounded-circle" height=40 width=40 src="{% static 'icons/default_profile_pic.png'%}" alt="">
+                {% endif %}
+                <div class="ms-2">
+                  <span class="">{{user.username}}</span>
+                  <form action="" enctype="multipart/form-data" method="POST">
+                    {% csrf_token %}
+                    {{profile_form.as_p}}
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+              
+
+{% endblock %}
