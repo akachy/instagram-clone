@@ -16,17 +16,34 @@
           <div class="">
               <span class="ms-6 fs-5">{{profile.user.username}}</span>
               &nbsp;
-              <button style="background-color: #e1e4e7; width: 150px;" class="mt-2 rounded-3 btn fw-5">Edit Profile</button>
+              <form action="" method="POST" style="display: inline;">
+              {% csrf_token %}
+              {% if profile in user.profile.follows.all %}
+              <button class=" ter mt-2 rounded-3 btn fw-5" name="follow" type="submit" value="unfollow">following</button>
               &nbsp;
-              <button style="background-color: #e1e4e7; width: 150px;" class="mt-2 rounded-3 btn fw-5">Edit Profile</button>
+              {% else %}
+              <button class="mt-2 rounded-3 btn fw-5 ter" name="follow" type="submit" value="follow">follow</button>
               &nbsp;
+              {% endif %}
+              
+              </form>
+              <button class=" ter mt-2 rounded-3 btn fw-5">message</button>
+              &nbsp;
+              
+              
               <img height="25" src="fb mes.png" alt=""><br>
               <div class="mt-4 ms-5">
                   <span class="ms-5"><span class="fw-5">{{posts.count}}</span> posts</span> 
-                  <span class="ms-4" id="button"><span class="fw-5"></span> followers</span>
-                  <span class="ms-5"> <span class="fw-5">655</span> following</span><br>
+                  <span class="ms-4" id="button"><span class="fw-5">{{profile.followed_by.count}}</span> followers</span>
+                  <span class="ms-5"> <span class="fw-5">{{profile.follows.count}}</span> following</span><br>
                   <span class="ms-5 fw-5">{{profile.user.first_name}}</span><br>
-                  <span class="ms-5">i write in weird languages</span>
+                  <span class="ms-5">i write in weird languages</span><br><br>
+                  <span class="ms-5 text-muted fs-7 fw-5">Followed by</span>
+                    {% for following in profile.followed_by.all%}
+                    <span class="fs-7 fw-6">{{following|slice:3}},</span>
+                    
+                    {% endfor %}
+                  
                   </div>
           </div>
       </div>
@@ -39,18 +56,28 @@
           <div id="popupclose" class="ms-8ss">X</div>
         </div>
         <div class="popupcontent">
-          <div class="d-flex">
-            <div class="mb-3">
-              <img class="rounded-circle" height=40 width=40 src="_DSC6952 (2).jpg" alt="">
+          {% for profile in profile.followed_by.all %}
+          <div class="mt-2 d-sm-flex">
+            {% if profile.profile_image%}
+            <img class="rounded-circle comt" height="40" width="40" src="{{profile.profile_image.url}}" alt="">
+            {% else %}
+            <img class="rounded-circle" height=40 width=40 src="{% static 'icons/default_profile_pic.png'%}" alt="">
+            {% endif %}
+            <div class="ms-2" style="width: 150px;">
+              <span class="fw-6">{{profile.user.username}}</span>&nbsp; <br>
+              
+              <span class="text-muted fw-5 fs-7">{{profile.user.first_name}}</span>
+              
             </div>
-            <div>
-              <span class="ms-3 fw-6">kachy</span><br>
-              <span class="ms-3 text-muted">kachy</span>
-            </div>
-            <div class="ms-8s">
-              <button  style="background-color: #0095f6; width: 90px;" class="mt-1 rounded-3 btn fs-6 text-white fw-5">Following</button>
+            <div class=" ms-6">
+              {% if profile not in user.profile.follows.all%}
+              <button class="fw-5 btn tem">Follow</button>
+              {% else%}
+              <button class="fw-5 btn tem">Following</button>
+              {% endif %}
             </div>
           </div>
+          {% endfor %}
           
         </div>
   </div>
@@ -66,7 +93,9 @@
   <section>
     {% if posts %}
     {% for posts in posts %}
-    <img class="mt-1 me-0s" src="{{posts.content.url}}" height="309" width="309" alt="">
+    <a href="{% url 'post_detail' posts.id %}">
+      <img class="mt-1 me-0s" src="{{posts.content.url}}" height="309" width="309" alt="">
+    </a>
     {% endfor %}
     {% else %}
     <p>there are no posts</p>
@@ -94,6 +123,7 @@
         <button class="mt-2 rounded-3 btn idk fw-5">Edit Profile</button>
         {% else %}
         <button class="ibx mt-2 rounded-3 btn fs-6 fw-5 ">following</button>
+        <!-- <button class="ibx mt-2 rounded-3 btn fs-6 fw-5 ">follow</button> -->
         <button class="ibx mt-2 rounded-3 btn fs-6 fw-5 ">Message</button>
         {% endif %}
       </div>
@@ -135,6 +165,12 @@
     
   </section>         
 </section>
+
+
+
+
+
+
 
 
 {% endblock %}
