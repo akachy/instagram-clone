@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from . models import Post
+from . models import Post, Comment, Profile
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(label='',widget=forms.TextInput(attrs={'class':'form-control','placeholder':'email address','style':'width:250px'}))
@@ -47,3 +47,29 @@ class PostForm(forms.ModelForm):
         model = Post
         exclude = ('user','likes',)
 
+
+
+class CommentForm(forms.ModelForm):
+    text = forms.CharField(required=True,
+        widget=forms.widgets.Textarea(
+            attrs={
+                'placeholder': 'Add a comment',
+                'style':'border:none; outline:none; height:30px;'
+                
+            }
+            ),
+            label = '',
+        )
+
+    class Meta:
+        model = Comment
+        fields = ('text',)
+
+class ProfilePicForm(forms.ModelForm):
+    profile_image = forms.ImageField(label='Profile Picture')
+    profile_bio = forms.CharField(label='description',widget=forms.Textarea(attrs={'class':'form-control','placeholder':'description','style':'height:80px'}))
+
+
+    class Meta:
+        model = Profile
+        fields = ('profile_image','profile_bio',)
